@@ -7,7 +7,8 @@ import (
 )
 
 type pokemon struct {
-	Id int `json:"id"`
+	Id     int `json:"id"`
+	Height int `json:"height"`
 }
 
 func GetPokemonInfo(pokemonName string) (pokemon, error) {
