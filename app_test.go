@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"testing"
 )
@@ -61,6 +62,38 @@ func TestGetPokemonHeight(t *testing.T) {
 			}
 
 			if got.Height != tt.want {
+				t.Errorf("input: %v - got: %v, %v - want: %v, %v", tt.input, got, err, tt.want, tt.wantErr)
+			}
+		})
+	}
+}
+
+func TestGetPokemonWeight(t *testing.T) {
+	tests := []struct {
+		name          string
+		input         string
+		want          int
+		wantErr       error
+		errorExpected bool
+	}{
+		{name: "pikachu", input: "pikachu", want: 60, wantErr: nil, errorExpected: false},
+		{name: "bulbasaur", input: "bulbasaur", want: 69, wantErr: nil, errorExpected: false},
+		{name: "charmander", input: "charmander", want: 85, wantErr: nil, errorExpected: false},
+		{name: "invalid pokemon", input: "non-existent-pokemon", want: 0, wantErr: errors.New("pokemon not found"), errorExpected: true},
+		{name: "empty input", input: "", want: 0, wantErr: errors.New("invalid input"), errorExpected: true},
+	}
+
+	t.Parallel()
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := GetPokemonInfo(tt.input)
+			if !tt.errorExpected && err != tt.wantErr {
+				t.Errorf("input: %v - got: %v, %v - want: %v, %v", tt.input, got, err, tt.want, tt.wantErr)
+			} else if err == tt.wantErr && tt.wantErr != nil {
+				t.SkipNow()
+			}
+
+			if got.Weight != tt.want {
 				t.Errorf("input: %v - got: %v, %v - want: %v, %v", tt.input, got, err, tt.want, tt.wantErr)
 			}
 		})
