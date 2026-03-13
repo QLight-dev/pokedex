@@ -10,13 +10,19 @@ type pokemon struct {
 	Id     int `json:"id"`
 	Height int `json:"height"`
 	Weight int `json:"weight"`
+
 	Types []struct {
 		Type struct {
 			Name string `json:"name"`
 		} `json:"type"`
 	} `json:"types"`
-}
 
+	Abilities []struct {
+		Ability struct {
+			Name string `json:"name"`
+		}
+	} `json:"abilities"`
+}
 
 // GetPokemonInfo sends a GET request to the Pokémon API to retrieve information for a given Pokémon.
 // It returns the retrieved Pokémon and an error, if any.
@@ -46,6 +52,15 @@ func GetPokemonTypes(p pokemon) []string {
 	var result []string
 	for _, t := range p.Types {
 		result = append(result, t.Type.Name)
+	}
+	return result
+}
+
+// Extracts and returns a slice of abilities from the given struct
+func GetPokemonAbilities(p pokemon) []string {
+	var result []string
+	for _, t := range p.Abilities {
+		result = append(result, t.Ability.Name)
 	}
 	return result
 }
