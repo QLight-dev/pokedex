@@ -199,6 +199,14 @@ func TestGetPokemonBaseStats(t *testing.T) {
 			Defense: 15,
 			Speed:   60,
 		}},
+		{name: "normal case 2", input: "bulbasaur", want: BaseStats{
+			HP:      45,
+			Attack:  49,
+			SpAtk:   65,
+			SpDef:   65,
+			Defense: 49,
+			Speed:   45,
+		}},
 	}
 
 	t.Parallel()
