@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"slices"
 	"testing"
 )
 
@@ -95,6 +96,41 @@ func TestGetPokemonWeight(t *testing.T) {
 
 			if got.Weight != tt.want {
 				t.Errorf("input: %v - got: %v, %v - want: %v, %v", tt.input, got, err, tt.want, tt.wantErr)
+			}
+		})
+	}
+}
+
+func TestGetPokemonTypes(t *testing.T) {
+	tests := []struct {
+		name  string
+		input string
+		want  []string
+	}{
+		{name: "normal case", input: "pichu", want: []string{"electric"}},
+		{name: "normal case 2", input: "squirtle", want: []string{"water"}},
+		{name: "dual types", input: "Swampert", want: []string{"water", "ground"}},
+		{name: "dual types 2", input: "Starmie", want: []string{"water", "psychic"}},
+	}
+
+	t.Parallel()
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			input, err := GetPokemonInfo(tt.input)
+			if err != nil {
+				panic(err)
+			}
+
+			got := GetPokemonTypes(input)
+
+			correctTypes := 0
+			for _, g := range got {
+				if slices.Contains(tt.want, g) {
+					correctTypes++
+				}
+			}
+			if correctTypes != len(tt.want) {
+				t.Errorf("input: %v - got: %v - want: %v", tt.input, got, tt.want)
 			}
 		})
 	}
