@@ -23,6 +23,9 @@ func TestGetPokemonId(t *testing.T) {
 
 	t.Parallel()
 	for _, tt := range tests {
+		// capture the variable to avoid modifying all test's tt variable when modifying it
+		tt := tt
+
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := GetPokemonInfo(tt.input)
 			if !tt.errorExpected && err != tt.wantErr {
@@ -54,6 +57,9 @@ func TestGetPokemonHeight(t *testing.T) {
 
 	t.Parallel()
 	for _, tt := range tests {
+		// capture the variable to avoid modifying all test's tt variable when modifying it
+		tt := tt
+
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := GetPokemonInfo(tt.input)
 			if !tt.errorExpected && err != tt.wantErr {
@@ -86,6 +92,9 @@ func TestGetPokemonWeight(t *testing.T) {
 
 	t.Parallel()
 	for _, tt := range tests {
+		// capture the variable to avoid modifying all test's tt variable when modifying it
+		tt := tt
+
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := GetPokemonInfo(tt.input)
 			if !tt.errorExpected && err != tt.wantErr {
@@ -115,6 +124,9 @@ func TestGetPokemonTypes(t *testing.T) {
 
 	t.Parallel()
 	for _, tt := range tests {
+		// capture the variable to avoid modifying all test's tt variable when modifying it
+		tt := tt
+
 		t.Run(tt.name, func(t *testing.T) {
 			input, err := GetPokemonInfo(tt.input)
 			if err != nil {
