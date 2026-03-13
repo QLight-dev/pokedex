@@ -184,3 +184,39 @@ func TestGetPokemonAbilities(t *testing.T) {
 		})
 	}
 }
+
+func TestGetPokemonBaseStats(t *testing.T) {
+	tests := []struct {
+		name  string
+		input string
+		want  BaseStats
+	}{
+		{name: "normal case", input: "pichu", want: BaseStats{
+			HP:      20,
+			Attack:  40,
+			SpAtk:   35,
+			SpDef:   35,
+			Defense: 15,
+			Speed:   60,
+		}},
+	}
+
+	t.Parallel()
+	for _, tt := range tests {
+		// capture the variable to avoid modifying all test's tt variable when modifying it
+		tt := tt
+
+		t.Run(tt.name, func(t *testing.T) {
+			input, err := GetPokemonInfo(tt.input)
+			if err != nil {
+				panic(err)
+			}
+
+			got := GetPokemonBaseStats(input)
+
+			if got != tt.want {
+				t.Errorf("input: %v - got: %+v - want: %+v", tt.input, got, tt.want)
+			}
+		})
+	}
+}
