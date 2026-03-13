@@ -10,6 +10,11 @@ type pokemon struct {
 	Id     int `json:"id"`
 	Height int `json:"height"`
 	Weight int `json:"weight"`
+	Types []struct {
+		Type struct {
+			Name string `json:"name"`
+		} `json:"type"`
+	} `json:"types"`
 }
 
 
@@ -34,4 +39,13 @@ func GetPokemonInfo(pokemonName string) (pokemon, error) {
 	}
 
 	return result, nil
+}
+
+// Extracts and returns a slice of types from the given struct
+func GetPokemonTypes(p pokemon) []string {
+	var result []string
+	for _, t := range p.Types {
+		result = append(result, t.Type.Name)
+	}
+	return result
 }
