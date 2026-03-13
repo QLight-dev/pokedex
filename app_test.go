@@ -27,7 +27,7 @@ func TestGetPokemonId(t *testing.T) {
 		tt := tt
 
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := GetPokemonInfo(tt.input)
+			got, err := RequestPokemonInfo(tt.input)
 			if !tt.errorExpected && err != tt.wantErr {
 				t.Errorf("input: %v - got: %v, %v - want: %v, %v", tt.input, got, err, tt.want, tt.wantErr)
 			} else if err == tt.wantErr && tt.wantErr != nil {
@@ -61,7 +61,7 @@ func TestGetPokemonHeight(t *testing.T) {
 		tt := tt
 
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := GetPokemonInfo(tt.input)
+			got, err := RequestPokemonInfo(tt.input)
 			if !tt.errorExpected && err != tt.wantErr {
 				t.Errorf("input: %v - got: %v, %v - want: %v, %v", tt.input, got, err, tt.want, tt.wantErr)
 			} else if err == tt.wantErr && tt.wantErr != nil {
@@ -96,7 +96,7 @@ func TestGetPokemonWeight(t *testing.T) {
 		tt := tt
 
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := GetPokemonInfo(tt.input)
+			got, err := RequestPokemonInfo(tt.input)
 			if !tt.errorExpected && err != tt.wantErr {
 				t.Errorf("input: %v - got: %v, %v - want: %v, %v", tt.input, got, err, tt.want, tt.wantErr)
 			} else if err == tt.wantErr && tt.wantErr != nil {
@@ -128,7 +128,7 @@ func TestGetPokemonTypes(t *testing.T) {
 		tt := tt
 
 		t.Run(tt.name, func(t *testing.T) {
-			input, err := GetPokemonInfo(tt.input)
+			input, err := RequestPokemonInfo(tt.input)
 			if err != nil {
 				panic(err)
 			}
@@ -165,7 +165,7 @@ func TestGetPokemonAbilities(t *testing.T) {
 		tt := tt
 
 		t.Run(tt.name, func(t *testing.T) {
-			input, err := GetPokemonInfo(tt.input)
+			input, err := RequestPokemonInfo(tt.input)
 			if err != nil {
 				panic(err)
 			}
@@ -215,7 +215,7 @@ func TestGetPokemonBaseStats(t *testing.T) {
 		tt := tt
 
 		t.Run(tt.name, func(t *testing.T) {
-			input, err := GetPokemonInfo(tt.input)
+			input, err := RequestPokemonInfo(tt.input)
 			if err != nil {
 				panic(err)
 			}

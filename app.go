@@ -34,7 +34,7 @@ type pokemon struct {
 
 // GetPokemonInfo sends a GET request to the Pokémon API to retrieve information for a given Pokémon.
 // It returns the retrieved Pokémon and an error, if any.
-func GetPokemonInfo(pokemonName string) (pokemon, error) {
+func RequestPokemonInfo(pokemonName string) (pokemon, error) {
 	res, err := http.Get(fmt.Sprintf("https://pokeapi.co/api/v2/pokemon/%s/", pokemonName))
 	if err != nil {
 		return pokemon{}, err
