@@ -10,6 +10,7 @@ type pokemon struct {
 	Id     int `json:"id"`
 	Height int `json:"height"`
 	Weight int `json:"weight"`
+	Name string `json:"name"`
 
 	Types []struct {
 		Type struct {
