@@ -24,3 +24,18 @@ func TestHectogramsToKg(t *testing.T) {
 		})
 	}
 }
+
+func TestDecimetersToMeters(t *testing.T) {
+	tests := []tableTests{
+		{name: "5 decimeters to meter", input: 5.0, want: 0.5},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := DecimetersToMeters(tt.input)
+			if got != tt.want {
+				t.Errorf("input: %f, got %f, want: %f", tt.input, got, tt.want)
+			}
+		})
+	}
+}
