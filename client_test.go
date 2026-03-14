@@ -6,14 +6,17 @@ import (
 	"testing"
 )
 
+// define tableTests struct to enforce DRY
+type tableTests struct {
+	name          string
+	input         string
+	want          int
+	wantErr       error
+	errorExpected bool
+}
+
 func TestGetPokemonId(t *testing.T) {
-	tests := []struct {
-		name          string
-		input         string
-		want          int
-		wantErr       error
-		errorExpected bool
-	}{
+	tests := []tableTests{
 		{name: "Normal case", input: "pichu", want: 172, wantErr: nil, errorExpected: false},
 		{name: "Non-existent Pokémon", input: "invalidpokemon", want: 0, wantErr: fmt.Errorf("failed to retrieve Pokémon info: 404 Not Found"), errorExpected: true},
 		{name: "Empty Pokémon name", input: "", want: 0, wantErr: fmt.Errorf("failed to retrieve Pokémon info: 404 Not Found"), errorExpected: true},
@@ -41,13 +44,7 @@ func TestGetPokemonId(t *testing.T) {
 }
 
 func TestGetPokemonHeight(t *testing.T) {
-	tests := []struct {
-		name          string
-		input         string
-		want          int
-		wantErr       error
-		errorExpected bool
-	}{
+	tests := []tableTests{
 		{name: "Normal case", input: "charizard", want: 17, wantErr: nil, errorExpected: false},
 		{name: "Non-existent Pokémon", input: "invalidpokemon", want: 0, wantErr: fmt.Errorf("failed to retrieve Pokémon info: 404 Not Found"), errorExpected: true},
 		{name: "Empty Pokémon name", input: "", want: 0, wantErr: fmt.Errorf("failed to retrieve Pokémon info: 404 Not Found"), errorExpected: true},
@@ -75,13 +72,7 @@ func TestGetPokemonHeight(t *testing.T) {
 }
 
 func TestGetPokemonWeight(t *testing.T) {
-	tests := []struct {
-		name          string
-		input         string
-		want          int
-		wantErr       error
-		errorExpected bool
-	}{
+	tests := []tableTests{
 		{name: "pikachu", input: "pikachu", want: 60, wantErr: nil, errorExpected: false},
 		{name: "bulbasaur", input: "bulbasaur", want: 69, wantErr: nil, errorExpected: false},
 		{name: "charmander", input: "charmander", want: 85, wantErr: nil, errorExpected: false},
