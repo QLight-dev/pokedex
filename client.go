@@ -6,10 +6,18 @@ import (
 	"net/http"
 )
 
+
 // GetPokemonInfo sends a GET request to the Pokémon API to retrieve information for a given Pokémon.
 // It returns the retrieved Pokémon and an error, if any.
 func RequestPokemonInfo(pokemonName string) (pokemon, error) {
-	res, err := http.Get(fmt.Sprintf("https://pokeapi.co/api/v2/pokemon/%s/", pokemonName))
+	url := fmt.Sprintf("https://pokeapi.co/api/v2/pokemon/%s/", pokemonName)
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return pokemon{}, err
+	}
+
+	client := http.Client{}
+	res, err := client.Do(req)
 	if err != nil {
 		return pokemon{}, err
 	}
