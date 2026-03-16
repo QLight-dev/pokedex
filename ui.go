@@ -13,7 +13,7 @@ func PrintFormattedOutput(p pokemon) {
 
 	fmt.Printf("Type(s): \n")
 	for _, t := range GetPokemonTypes(p) {
-		fmt.Printf("	- %s\n", t)
+		fmt.Printf("	- %s\n", utils.FormatName(t))
 	}
 	fmt.Println("")
 
@@ -27,7 +27,7 @@ func PrintFormattedOutput(p pokemon) {
 
 	fmt.Println("Abilities: ")
 	for _, ability := range GetPokemonAbilities(p) {
-		fmt.Printf("	- %s\n", ability)
+		fmt.Printf("	- %s\n", utils.FormatName(ability))
 	}
 	fmt.Println("")
 
