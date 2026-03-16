@@ -7,9 +7,12 @@ import (
 )
 
 
+type validParameters interface {
+	~int | ~string
+}
 // GetPokemonInfo sends a GET request to the Pokémon API to retrieve information for a given Pokémon.
 // It returns the retrieved Pokémon and an error, if any.
-func RequestPokemonInfo(pokemonName string) (pokemon, error) {
+func RequestPokemonInfo[T validParameters](pokemonName T) (pokemon, error) {
 	url := fmt.Sprintf("https://pokeapi.co/api/v2/pokemon/%s/", pokemonName)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
