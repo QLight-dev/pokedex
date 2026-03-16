@@ -2,28 +2,41 @@ package main
 
 import (
 	"fmt"
-	"strings"
 
-	"golang.org/x/text/cases"
-	"golang.org/x/text/language"
+	"github.com/QLight-dev/pokedex/utils"
 )
 
 func PrintFormattedOutput(p pokemon) {
-	// replace - to space to look more professional
-	name := strings.ReplaceAll(p.Name, "-", " ")
-
-	// upercase each word to make more professional
-	caser := cases.Title(language.English)
-	formattedName := caser.String(name)
-
+	formattedName := utils.FormatName(p.Name)
 	fmt.Printf("#%d %s\n", p.Id, formattedName)
+	fmt.Println("")
 
 	fmt.Printf("Type(s): \n")
 	for _, t := range GetPokemonTypes(p) {
 		fmt.Printf("	- %s\n", t)
 	}
+	fmt.Println("")
 
 	// convert for human-friendly measurements
-	// height = utils.DecimetersToMeters(float32(p.Height))
-	// weight = utils.HectogramsToKg(float32(p.Weight))
+	height := utils.DecimetersToMeters(float32(p.Height))
+	weight := utils.HectogramsToKg(float32(p.Weight))
+
+	fmt.Printf("Height: %.1f m\n", height)
+	fmt.Printf("Weight: %.1f kg\n", weight)
+	fmt.Println("")
+
+	fmt.Println("Abilities: ")
+	for _, ability := range GetPokemonAbilities(p) {
+		fmt.Printf("	- %s\n", ability)
+	}
+	fmt.Println("")
+
+	stats := GetPokemonBaseStats(p)
+	fmt.Println("Base Stats")
+	fmt.Printf("HP: %v\n", stats.HP)
+	fmt.Printf("Attack: %v\n", stats.Attack)
+	fmt.Printf("Defense: %v\n", stats.Defense)
+	fmt.Printf("Sp. Atk: %v\n", stats.SpAtk)
+	fmt.Printf("Sp. Def: %v\n", stats.SpDef)
+	fmt.Printf("Speed: %v\n", stats.Speed)
 }
