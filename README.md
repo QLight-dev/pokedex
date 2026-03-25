@@ -20,7 +20,7 @@ go install github.com/QLight-dev/pokedex@latest
 ```zsh
 pokedex pokemon <pokemon>
 ```
-> [!EXAMPLE]
+> **Example:**
 > Show info for Arbok:
 > ```zsh
 > pokedex pokemon Arbok
