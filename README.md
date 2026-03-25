@@ -6,7 +6,7 @@
 ![Repo Size](https://img.shields.io/github/repo-size/QLight-dev/pokedex?style=for-the-badge)
 ![Github Repo](https://img.shields.io/badge/github-repo-blue?style=for-the-badge&logo=github)
 
-[demo](assets/pokedex_demo.png)
+![demo](assets/pokedex_demo.png)
 
 A pokedex CLI written in Go that uses the amazing [PokéAPI](https://pokeapi.co/).
 ## Installation
